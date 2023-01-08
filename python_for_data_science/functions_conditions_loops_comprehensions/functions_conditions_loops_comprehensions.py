@@ -620,7 +620,6 @@ dictionary.items()
 # Amaç: çift sayıların karesi alınarak bir sözlüğe eklenmek istemektedir
 # Key'ler orjinal değerler value'lar ise değiştirilmiş değerler olacak.
 
-
 numbers = range(10)
 new_dict = {}
 
@@ -714,7 +713,7 @@ import seaborn as sns
 df = sns.load_dataset("car_crashes")
 df.columns
 
-num_cols = [col for col in df.columns if df[col].dtype != "O"]
+num_cols = [col for col in df.columns if df[col].dtype != "O"] #numeric değişkenleri seçer
 soz = {}
 agg_list = ["mean", "min", "max", "sum"]
 
