@@ -16,7 +16,7 @@
 # Yeniden Şekillendirme (Reshaping)
 # Index Seçimi (Index Selection)
 # Slicing
-# Fancy Index
+# Fancy Index - sabit veri tipi sakladığı için daha verimli
 # Numpy'da Koşullu İşlemler (Conditions on Numpy)
 # Matematiksel İşlemler (Mathematical Operations)
 
@@ -24,6 +24,8 @@
 # Neden NumPy?
 #############################################
 import numpy as np
+
+#klasik yol
 a = [1, 2, 3, 4]
 b = [2, 3, 4, 5]
 
@@ -32,6 +34,7 @@ ab = []
 for i in range(0, len(a)):
     ab.append(a[i] * b[i])
 
+#numpy yolu - listeye göre daha hızlı yüksek seviye işlem yapar
 a = np.array([1, 2, 3, 4])
 b = np.array([2, 3, 4, 5])
 a * b
@@ -60,7 +63,7 @@ import numpy as np
 # size: toplam eleman sayısı
 # dtype: array veri tipi
 
-a = np.random.randint(10, size=5)
+a = np.random.randint(10, size=5) #hiç bir ifade girilmezse başlangıç 0, 5 adet ransgele sayı üretir
 a.ndim
 a.shape
 a.size
@@ -74,6 +77,8 @@ import numpy as np
 np.random.randint(1, 10, size=9)
 np.random.randint(1, 10, size=9).reshape(3, 3)
 
+#yada bu şekilde ifade edilebilir.
+# dikkat 10 eleman denip 3,3 array denirse hata veriri
 ar = np.random.randint(1, 10, size=9)
 ar.reshape(3, 3)
 
