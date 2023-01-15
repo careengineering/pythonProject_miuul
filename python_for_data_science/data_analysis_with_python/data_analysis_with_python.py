@@ -101,17 +101,18 @@ m[2, 3]
 m[2, 3] = 999
 
 m[2, 3] = 2.9
+#diğer tüm array int olduğundan 2.9 değil 2 değerini atar
 
-m[:, 0]
-m[1, :]
-m[0:2, 0:3]
+m[:, 0] #herşeyi seç. O.sütün seç
+m[1, :] #1.satır bütün sutunalr seç
+m[0:2, 0:3] #0-1 satırlar 0-1-2 sütün
 
 #############################################
 # Fancy Index
 #############################################
 import numpy as np
 
-v = np.arange(0, 30, 3)
+v = np.arange(0, 30, 3) #0 dan 30 a kadar 3er 3er array oluştur
 v[1]
 v[4]
 
@@ -157,11 +158,13 @@ v - 1
 
 np.subtract(v, 1)
 np.add(v, 1)
-np.mean(v)
+np.mean(v)#ortalama
 np.sum(v)
 np.min(v)
 np.max(v)
-np.var(v)
+np.var(v)#varyans
+
+
 v = np.subtract(v, 1)
 
 #######################
@@ -171,10 +174,10 @@ v = np.subtract(v, 1)
 # 5*x0 + x1 = 12
 # x0 + 3*x1 = 10
 
-a = np.array([[5, 1], [1, 3]])
-b = np.array([12, 10])
+a = np.array([[5, 1], [1, 3]]) #X0 değerleri [5, 1], x1 değeleri [1, 3]
+b = np.array([12, 10]) #denklem sonuçları
 
-np.linalg.solve(a, b)
+np.linalg.solve(a, b) #çözüm
 
 #############################################
 # PANDAS
@@ -195,14 +198,15 @@ import pandas as pd
 
 s = pd.Series([10, 77, 12, 4, 5])
 type(s)
-s.index
-s.dtype
-s.size
-s.ndim
-s.values
-type(s.values)
-s.head(3)
-s.tail(3)
+s.index #index bilgisini verir. RangeIndex(start=0, stop=5, step=1)
+s.dtype # içerisindeki verinin tipi dtype('int64')
+s.size # eleman sayısı verir. 5
+s.ndim # boyutu verir. 1
+s.values # değerleri verir
+type(s.values) # index bilgisiyle ilgilenilmediğinden numpy arrayi olur
+
+s.head(3) # ilk 3 eleman
+s.tail(3) # son 3 eleman
 
 
 #############################################
@@ -210,28 +214,29 @@ s.tail(3)
 #############################################
 import pandas as pd
 
-df = pd.read_csv("datasets/advertising.csv")
+df = pd.read_csv("python_for_data_science/data_analysis_with_python/datasets/advertising.csv")
 df.head()
 # pandas cheatsheet
 
 #############################################
 # Veriye Hızlı Bakış (Quick Look at Data)
 #############################################
+
 import pandas as pd
 import seaborn as sns
 
 df = sns.load_dataset("titanic")
-df.head()
-df.tail()
-df.shape
-df.info()
-df.columns
-df.index
-df.describe().T
-df.isnull().values.any()
-df.isnull().sum()
-df["sex"].head()
-df["sex"].value_counts()
+df.head() #baştan 5 satır veri gösterir
+df.tail() # sondan 5 satır veri gösterir
+df.shape # veri sayısını verir (891, 15) satır,sütun başlık dahil
+df.info() #değişken tipleri ve gözlem tipleri hakkında bilgi verir
+df.columns #başlıklar
+df.index #index bilgileri RangeIndex(start=0, stop=891, step=1)
+df.describe().T #T transpozunu almak. istatistik bilgilere erişilir. sayısal olanları yapar sadece
+df.isnull().values.any() #veri setinde en az bir bile olsa eksiklik var mı? True
+df.isnull().sum() #False 0 True 1 kabul ederek her veri tipinde eksik veriyi gösterir
+df["sex"].head() #kategorik değişken.
+df["sex"].value_counts() #kategorisine göre sayıları verir.
 
 
 #############################################
@@ -244,13 +249,13 @@ df.head()
 
 df.index
 df[0:13]
-df.drop(0, axis=0).head()
+df.drop(0, axis=0).head() #0.index , O.axis veri sil
 
 delete_indexes = [1, 3, 5, 7]
-df.drop(delete_indexes, axis=0).head(10)
+df.drop(delete_indexes, axis=0).head(10) #birden fazla index no silme
 
 # df = df.drop(delete_indexes, axis=0)
-# df.drop(delete_indexes, axis=0, inplace=True)
+# df.drop(delete_indexes, axis=0, inplace=True) #inplace argümanı kullanılırsa işlem kalıcı olur!!!
 
 #######################
 # Değişkeni Indexe Çevirmek
@@ -259,7 +264,7 @@ df.drop(delete_indexes, axis=0).head(10)
 df["age"].head()
 df.age.head()
 
-df.index = df["age"]
+df.index = df["age"] #index e yaş bilgileri eklenir
 
 df.drop("age", axis=1).head()
 
@@ -273,8 +278,8 @@ df.head()
 df.index
 
 df["age"] = df.index
-
 df.head()
+
 df.drop("age", axis=1, inplace=True)
 
 df.reset_index().head()
@@ -286,19 +291,19 @@ df.head()
 #######################
 import pandas as pd
 import seaborn as sns
-pd.set_option('display.max_columns', None)
+pd.set_option('display.max_columns', None) #tüm sütunlar göster ... olarak gösterme
 df = sns.load_dataset("titanic")
 df.head()
 
-"age" in df
+"age" in df #bu değişken veri setinde var mı
 
 df["age"].head()
 df.age.head()
 
 df["age"].head()
-type(df["age"].head())
+type(df["age"].head()) #pandas serisi
 
-
+#!!! 2 köşeli parantezle alınırsa veri tipi değişmez
 df[["age"]].head()
 type(df[["age"]].head())
 
@@ -314,6 +319,7 @@ df.drop("age3", axis=1).head()
 
 df.drop(col_names, axis=1).head()
 
+#seçme işlemi için kullanılı ~işaretei hariç demek
 df.loc[:, ~df.columns.str.contains("age")].head()
 
 
