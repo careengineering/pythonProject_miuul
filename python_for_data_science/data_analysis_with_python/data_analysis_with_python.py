@@ -336,7 +336,7 @@ df.head()
 df.iloc[0:3]
 df.iloc[0, 0]
 
-# loc: label based selection
+# loc: label based selections - diğerlerinden farklı olarak 3 indexinide alır!!!!
 df.loc[0:3]
 
 df.iloc[0:3, 0:3]
@@ -434,6 +434,7 @@ df.head()
 df["new_age"] = pd.cut(df["age"], [0, 10, 18, 25, 40, 90])
 
 df.pivot_table("survived", "sex", ["new_age", "class"])
+# (0, 10]  0 dahil 10 hariç
 
 pd.set_option('display.width', 500)
 
